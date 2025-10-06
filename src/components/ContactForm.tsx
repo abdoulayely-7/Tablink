@@ -11,11 +11,12 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -26,14 +27,45 @@ const ContactForm = () => {
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Message envoyé !",
-      description: "Je vous répondrai dans les plus brefs délais.",
-    });
+    setIsLoading(true);
+    console.log("Envoi des données du formulaire:", formData);
 
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const response = await fetch("https://portfolio-mailer-u8me.onrender.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Réponse de l'API:", response.status, response.statusText);
+
+      if (response.ok) {
+        toast({
+          title: "Message envoyé !",
+          description: "Je vous répondrai dans les plus brefs délais.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const errorData = await response.json();
+        console.error("Erreur API:", errorData);
+        toast({
+          title: "Erreur",
+          description: "Échec de l'envoi du message. Veuillez réessayer.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Erreur réseau:", error);
+      toast({
+        title: "Erreur",
+        description: "Problème de connexion. Veuillez vérifier votre connexion internet.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -74,9 +106,9 @@ const ContactForm = () => {
           />
         </div>
 
-        <Button type="submit" className="w-full h-12 gap-2">
+        <Button type="submit" className="w-full h-12 gap-2" disabled={isLoading}>
           <Send className="w-4 h-4" />
-          Envoyer le message
+          {isLoading ? "Envoi en cours..." : "Envoyer le message"}
         </Button>
       </form>
     </div>
