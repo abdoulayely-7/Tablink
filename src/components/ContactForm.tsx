@@ -7,7 +7,7 @@ import { Send } from "lucide-react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    nom: "",
     email: "",
     message: "",
   });
@@ -18,7 +18,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.nom || !formData.email || !formData.message) {
       toast({
         title: "Erreur",
         description: "Veuillez remplir tous les champs",
@@ -46,7 +46,7 @@ const ContactForm = () => {
           title: "Message envoyé !",
           description: "Je vous répondrai dans les plus brefs délais.",
         });
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ nom: "", email: "", message: "" });
       } else {
         const errorData = await response.json();
         console.error("Erreur API:", errorData);
@@ -81,8 +81,8 @@ const ContactForm = () => {
         <div className="space-y-2">
           <Input
             placeholder="Votre nom"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formData.nom}
+            onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
             className="h-12"
           />
         </div>
