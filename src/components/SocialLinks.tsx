@@ -39,7 +39,7 @@ const SocialLinks = () => {
     {
       icon: <MessageCircle className="w-5 h-5" />,
       label: "WhatsApp",
-      href: " https://wa.me/221773795383?",
+      href: "https://api.whatsapp.com/send/?phone=+221773795383&text=Salut+Abdoulaye",
     },
   ];
 
