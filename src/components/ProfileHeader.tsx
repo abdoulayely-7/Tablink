@@ -5,12 +5,12 @@ const ProfileHeader = () => {
     <div className="flex flex-col items-center text-center space-y-6">
       <div className="relative group">
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-primary opacity-40 blur-2xl animate-pulse" 
-             style={{ boxShadow: 'var(--shadow-glow)' }} />
+            style={{ boxShadow: 'var(--shadow-glow)' }} />
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-20 blur-xl group-hover:opacity-30 transition-opacity" />
         <img
           src={profileImage}
           alt="Abdoulaye Ly - Développeur Full-Stack"
-          className="relative w-36 h-36 rounded-full object-top object-cover border-2 border-primary/30 shadow-2xl ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all"
+          className="relative w-50 h-50 rounded-full object-top object-cover border-2 border-primary/30 shadow-2xl ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all"
         />
       </div>
       
