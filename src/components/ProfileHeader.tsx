@@ -38,7 +38,7 @@ const ProfileHeader = () => {
       <p className="max-w-md text-muted-foreground leading-relaxed px-4 text-base md:text-lg animate-fade-in-up-delay-3">
         Passionné par le développement logiciel et les architectures propres, j'aime concevoir
         des applications performantes, maintenables et bien structurées. J'ai obtenu ma licence
-        en Génie Logiciel à ISI (2021-2024) et je termine actuellement ma formation à l'Orange Digital Center.
+        en Génie Logiciel à <span className="font-bold">ISI</span> (2021-2024) et je termine actuellement ma formation à l'<span className="font-bold"> Orange Digital Center</span>.
       </p>
     </div>
   );
